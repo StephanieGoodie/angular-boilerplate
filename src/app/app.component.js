@@ -1,50 +1,51 @@
 //toggle button
-const details = document.querySelector('summary');
+document.querySelector('#btn').addEventListener('click', () => {
+  const clone = document.querySelector('.card').cloneNode(true); // Clone the whole card
+  document.body.appendChild(clone);
+});
 
-document.querySelector('button[data-toggle-btn]').addEventListener('click', (e) => {
-  if (details.parentNode.getAttribute('open')) {
-        details.parentNode.removeAttribute('open');
+var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var letters = ["A", "B", "C", "D", "E", "F"];
+
+function randomColor() {
+  var color = "";
+  for (var i = 0; i < 3; i++) {
+    var index = Math.floor(Math.random() * (numbers.length + letters.length));
+    color += (index < numbers.length) ? numbers[index] : letters[index - numbers.length];
   }
-  else {
-    details.parentNode.setAttribute('open','open');    
+  return color;
+}
+
+document.querySelector('#colorBtn').addEventListener('click', () => {
+  const card = document.querySelector('.card');
+  // Change background color
+  card.style.backgroundColor = '#' + randomColor();
+});
+
+// HEADING CHANGER
+document.querySelector('#Headingbtn').addEventListener('click', () => {
+  const title = document.querySelector('h2');
+  title.innerText = "Super Pod 2 Realty";
+});
+
+// Card delete
+document.querySelector('#dltbtn').addEventListener('click', () => {
+  const cards = document.querySelectorAll('.card');
+  // Check if there are cards to delete
+  if (cards.length > 1) {
+    const lastCard = cards[cards.length - 1];
+    lastCard.parentNode.removeChild(lastCard);
   }
 });
 
-//duplicate button
-document.querySelector('.duplicate').addEventListener('click', function(e) {
-  const cardToClone = document.querySelector('.card').cloneNode(true);
-  document.body.appendChild(cardToClone);
-});
+var original = document.querySelector('#description').innerText;
 
-//delete button
-document.querySelector('#deletecard').addEventListener('click', function(e) {
-  let wantsTo = confirm("Are you sure?");
-  if (wantsTo) {
-    if (document.querySelector('.card:last-child') !== document.querySelector('.card')) {
-      document.querySelector('.card:last-child').remove();      
-    }
-    else {
-      alert("Cannot original last card");
-    }
+document.querySelector('#detailsBtn').addEventListener('click', () => {
+  const description = document.querySelector('#description');
+  // Toggle the visibility of the description
+  if (description.innerText === 'none' || description.innerText === '') {
+    description.innerText = original; // Show the description
+  } else {
+    description.innerText = ''; // Hide the description
   }
 });
-
-//change title button
-document.querySelector('.changetxt').addEventListener('click', function(e) {
-  let name = "Something else";
-  if (name) {
-    document.querySelector('.card h3').innerText = name;
-  }
-});
-
-//change background
-const card = document.querySelector('#card');
-        let backgroundColor = false;
-    document.querySelector('#changebackground').addEventListener('click', function(e) {
-            if (backgroundColor) {
-                card.style.backgroundColor = 'white';
-            } else {
-                card.style.backgroundColor = 'gray';
-            }
-            backgroundColor = !backgroundColor;
-        });
