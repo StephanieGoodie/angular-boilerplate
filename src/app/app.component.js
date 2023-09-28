@@ -1,51 +1,40 @@
-//toggle button
-document.querySelector('#btn').addEventListener('click', () => {
-  const clone = document.querySelector('.card').cloneNode(true); // Clone the whole card
-  document.body.appendChild(clone);
-});
+// Assuming you have an AngularJS app defined
+var app = angular.module('myApp', []);
 
-var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var letters = ["A", "B", "C", "D", "E", "F"];
+// Define a controller
+app.controller('myController', function($scope) {
+  $scope.toggleDescription = function() {
+    const description = angular.element(document.querySelector('#description'));
+    // Toggle the visibility of the description
+    if (description.text() === 'none' || description.text() === '') {
+      description.text(original); // Show the description
+    } else {
+      description.text(''); // Hide the description
+    }
+  };
 
-function randomColor() {
-  var color = "";
-  for (var i = 0; i < 3; i++) {
-    var index = Math.floor(Math.random() * (numbers.length + letters.length));
-    color += (index < numbers.length) ? numbers[index] : letters[index - numbers.length];
-  }
-  return color;
-}
+  $scope.duplicateCard = function() {
+    const clone = angular.element(document.querySelector('.card')).clone(); // Clone the whole card
+    angular.element(document.querySelector('body')).append(clone);
+  };
 
-document.querySelector('#colorBtn').addEventListener('click', () => {
-  const card = document.querySelector('.card');
-  // Change background color
-  card.style.backgroundColor = '#' + randomColor();
-});
+  $scope.changeBackgroundColor = function() {
+    const card = angular.element(document.querySelector('.card'));
+    // Change background color
+    card.css('background-color', '#' + randomColor());
+  };
 
-// HEADING CHANGER
-document.querySelector('#Headingbtn').addEventListener('click', () => {
-  const title = document.querySelector('h2');
-  title.innerText = "Super Pod 2 Realty";
-});
+  $scope.changeHeading = function() {
+    const title = angular.element(document.querySelector('h2'));
+    title.text('Super Pod 2 Realty');
+  };
 
-// Card delete
-document.querySelector('#dltbtn').addEventListener('click', () => {
-  const cards = document.querySelectorAll('.card');
-  // Check if there are cards to delete
-  if (cards.length > 1) {
-    const lastCard = cards[cards.length - 1];
-    lastCard.parentNode.removeChild(lastCard);
-  }
-});
-
-var original = document.querySelector('#description').innerText;
-
-document.querySelector('#detailsBtn').addEventListener('click', () => {
-  const description = document.querySelector('#description');
-  // Toggle the visibility of the description
-  if (description.innerText === 'none' || description.innerText === '') {
-    description.innerText = original; // Show the description
-  } else {
-    description.innerText = ''; // Hide the description
-  }
+  $scope.deleteCard = function() {
+    const cards = angular.element(document.querySelectorAll('.card'));
+    // Check if there are cards to delete
+    if (cards.length > 1) {
+      const lastCard = cards[cards.length - 1];
+      lastCard.remove();
+    }
+  };
 });
