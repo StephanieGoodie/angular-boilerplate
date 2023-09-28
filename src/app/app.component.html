@@ -20,17 +20,17 @@
         <div className="card-content">
           <h2>Two Pod Realty</h2>
           <p id="description">Real Estate Company Focused on delivering the best properties in the State College Area</p>
-          <button className="details-button" onClick={toggleDescription} id="detailsBtn">
+          <button className="details-button" ng-click="MyController.toggleDescription()">
             Details
           </button>
         </div>
       </div>
       
       <div class="buttons">
-        <button ng-click="MyController.toggleDescription()">Toggle Description</button>
-        <button ng-click="MyController.changeBackgroundColor()">BGColorChanger</button>
-        <button ng-click="MyController.changeHeading()">HeadingChanger</button>
-        <button ng-click="MyController.deleteCard()">DeleteCard</button>
+        <button ng-click="MyController.duplicatecard()">Duplicator</button>
+        <button ng-click="MyController.changeBGolor()">BGColorChanger</button>
+        <button ng-click="MyController.changeheading()">HeadingChanger</button>
+        <button ng-click="MyController.deletecard()">DeleteCard</button>
       </div>
 </body>
 </html>
