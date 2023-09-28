@@ -1,5 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
-<script src="./app.component.js"></script>
 <html ng-app="myApp">
 <body ng-controller="myController">
   <!-- Your HTML content here -->
@@ -8,7 +6,8 @@
   <!--button ng-click="toggleDescription()">Toggle Description</button-->
   <!-- Add similar buttons for other actions -->
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+<script src="./app.component.js"></script>
 <div class="heading">
   <h1 >HELLO WOMP</h1>
 </div>
@@ -27,11 +26,11 @@
         </div>
       </div>
       
-<div class="buttons">
-  <button id="btn">Duplicator</button>
-  <button ng-click="changeBackgroundColor()" id="colorBtn">BGColorChanger</button>
-  <button ng-click="toggleDescription()" id="Headingbtn">HeadingChanger</button>
-  <button id="dltbtn">DeleteCard</button>
-</div>
+      <div class="buttons">
+        <button id="btn" ng-click="MyController.toggleDescription()">Duplicator</button>
+        <button id="colorBtn" ng-click="MyController.changeBackgroundColor()">BGColorChanger</button>
+        <button id="Headingbtn" ng-click="MyController.changeHeading()">HeadingChanger</button>
+        <button id="dltbtn" ng-click="MyController.deleteCard()">DeleteCard</button>
+      </div>
 </body>
 </html>
